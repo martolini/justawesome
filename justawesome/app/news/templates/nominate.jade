@@ -1,0 +1,88 @@
+extends base
+-load staticfiles
+
+- block include
+script(src="{% static 'django_ajax/js/jquery.ajax.min.js' %}", type="text/javascript")
+script(src='http://cdn.embed.ly/jquery.embedly-3.1.1.min.js', type='text/javascript')
+
+- endblock
+
+- block content
+
+.container
+	.row
+		.col-md-12.col-lg-12
+			form.form-horizontal#nominate-form(method='POST')
+				- csrf_token
+				.row
+					.col-lg-12.col-md-12
+						.form-group
+							.input-group
+								input.form-control#url-input(type='url', name='url', placeholder='The best article of the day..')
+								.input-group-btn
+									button#submit-btn.btn.btn-info(type='submit')
+										i.fa.fa-fw.fa-file-text-o
+										| Nominate
+									button#spinner-btn.btn.btn-info(style='display: none;', disabled)
+										i.fa.fa-fw.fa-spinner.fa-spin
+				.row
+					.col-lg-4.col-md-4#thumbnail
+						img#thumbnail-img(src='http://www.holmenmarine.no/themes/marine/images/no-image.png')
+					.col-lg-8.col-lg-8
+						.form-group
+							.input-group
+								textarea.form-control#description-input(name='description', rows=8)
+								.input-group-addon
+									span
+										i.fa.fa-fw.fa-bars
+				hr
+				.row
+					.col-lg-6.col-md-6
+						.form-group
+							input.form-control#author-name(type='text', name='author-name', placeholder='Author name')
+					.col-lg-6.col-md-6
+						.form-group
+							input.form-control#author-url(type='url', name='author-url', placeholder='Author URL')
+				.row
+					.col-lg-12.col-md-12
+						.form-group
+							input.form-control#keywords(type='text', name='keywords', placeholder='keywords')
+
+	.row
+		.col-lg-12.col-md-12
+			#article-content
+- comment
+script.
+	$(function() {
+		var is_done = false;
+		$('#nominate-form').submit(function(e) {
+			var url = $('#url-input').val();
+			$('#submit-btn').fadeOut(100, function() {
+				$('#spinner-btn').fadeIn(100);
+			});
+			e.preventDefault();
+			$.embedly.extract(url, {key: '0c5ca1560f3449069432203827255cc1'}).progress(function(data) {
+				console.log(data);
+				$('#thumbnail-img').remove();
+				$('<img id="thumbnail-img" src="' + data.images[0].url + '">').height('100%').width('100%').appendTo('#thumbnail');
+				$('#description-input').val(data.description);
+				$('#author-name').val(data.authors[0].name);
+				$('#author-url').val(data.authors[0].url);
+				var keywords = '';
+				for (i=0; i < data.keywords.length; ++i) {
+					keywords += data.keywords[i].name;
+					if (i != data.keywords.length-1) {
+						keywords += ',';
+					}
+				}
+				$('#keywords').val(keywords);
+				$('#article-content').html(data.content);
+				$('#spinner-btn').fadeOut(100, function() {
+					$('#submit-btn').fadeIn(100);
+				});
+			});
+		});
+	});
+- endcomment
+
+- endblock

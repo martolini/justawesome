@@ -1,0 +1,5 @@
+Django==1.6.5
+-e git://github.com/yceruto/django-ajax@36d45bc0f4380feb69b213241fc6ff74a6d05161#egg=django_ajax-2.2.8
+pyjade==2.2.0
+six==1.7.3
+wsgiref==0.1.2
