@@ -1,0 +1,111 @@
+extends base
+- block content
+.container
+	.row
+		.col-md-12
+			ul.nav.nav-pills.nav-justified
+				if step_nr == 1
+					li1 = 'active'
+				elif step_nr == 2
+					li2 = 'active'
+				elif step_nr == 3
+					li3 = 'active'
+				elif step_nr == 4
+					li4 = 'active'
+				elif step_nr == 5
+					li5 = 'active'
+
+				li(class=li1)
+					a
+						| Step 1
+				li(class=li2)
+					a
+						| Step 2
+				li(class=li3)
+					a
+						| Step 3
+				li(class=li4)
+					a
+						| Final vote
+				li(class=li5)
+					a
+						| Finish
+	hr
+
+	.row
+		.col-md-4.text-center
+			button.btn.btn-primary
+				| O
+		.col-md-4.text-center
+			button.btn.btn-primary
+				| O
+		.col-md-4.text-center
+			button.btn.btn-primary
+				| O
+	br
+	.row
+		for article in articles
+			.col-md-4
+				.panel.panel-success
+					.panel-body
+						img.img-responsive.img-rounded(src = "http://www.orderofinterbeing.org/wp-content/uploads/2014/04/light-forest.jpg")
+					.panel-footer
+						h3
+							| #{article.title}
+						p
+							| #{article.description}
+	.row
+		article = articles[0]
+		hr
+		.col-md-9
+			h1
+				| #{article.title}
+			p
+				| #{article.description}
+			p
+				| #{article.html}
+			hr
+			hr
+		.col-md-3
+			br
+			br
+			.panel.panel-default
+				.panel-footer
+					.panel.panel-default
+						.panel-body
+							h4
+								| Champion
+						.panel-footer
+							p
+								| User_73 has the awesome score of 27
+				.panel-footer
+					.panel.panel-default
+						.panel-body
+							h4
+								| Author
+						.panel-footer
+							p
+								| Snorre Snorresen has the awesome score of 16
+				.panel-footer
+					.panel.panel-default
+						.panel-body
+							h4
+								| Source
+						.panel-footer
+							p
+								| BBC has the awesome score of 2 415
+- endblock
+
+- comment
+.script
+
+
+-endcomment
+
+
+
+
+
+
+
+
