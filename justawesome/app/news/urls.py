@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 
 viewpatterns = patterns('justawesome.app.news.views',
 	url(r'^nominate/$', 'nominate_view', name='nominate'),
+	url(r'^vote/$', 'vote_view', name='vote'),
 )
 
 

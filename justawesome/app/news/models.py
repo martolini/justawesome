@@ -24,6 +24,8 @@ class League(models.Model):
 	
 
 class Article(models.Model):
+	title = models.TextField(blank=True, null=True)
+	description = models.TextField(blank=True, null=True)
 	nominee = models.ForeignKey(Champion, blank=True, null=True, related_name='nominated_articles')
 	provider = models.ForeignKey(Provider, related_name='articles', blank=True, null=True)
 	author = models.ForeignKey(Author, related_name='articles', blank=True, null=True)
