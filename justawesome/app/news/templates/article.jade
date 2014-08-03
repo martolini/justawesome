@@ -1,0 +1,13 @@
+extends base
+- block content
+article = articles[1]
+.container
+	.row
+		.col-md-12
+			h1(style = "font-size:500%")
+				| #{article.title}
+			p
+				| #{article.description}
+			p
+				| #{article.html}
+- endblock

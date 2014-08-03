@@ -1,13 +1,118 @@
 extends base
 - block content
 .container
-	.row
-		.col-md-12.text-center
-			h1(font-size="200%")
-				| Dont't miss out!
-			h4
-				| Have your say on todays nominations
-			button.btn.btn-success.btn-lg
-				| START
+	if can_see
+		.panel.panel-success
+			.panel-body
+				.row
+					.col-md-1
+				
+					.col-md-10
+						.row
+							.col-md-12
+								h2
+									| Yesterday's winners
+						.row
+							for article in articles
+								.col-md-4
+									.panel.panel-success
+										.panel-body
+											img.img-responsive.img-rounded(src = "http://www.orderofinterbeing.org/wp-content/uploads/2014/04/light-forest.jpg")
+										.panel-footer
+											h3
+												| #{article.title}
+			.panel-footer
+				.row
+					.col-md-1
+				
+					.col-md-10
+						.row
+							.col-md-12
+								h2
+									| Latest nominees
+						.row
+							for article in articles
+								.col-md-4
+									.panel.panel-success
+										.panel-body
+											img.img-responsive.img-rounded(src = "http://www.orderofinterbeing.org/wp-content/uploads/2014/04/light-forest.jpg")
+										.panel-footer
+											h3
+												| #{article.title}
+			.panel-body
+			.row
+				.col-md-1
+
+				.col-md-10
+					.row
+						.col-md-12.text-left
+							h2
+								| More articles
+					.row
+						.col-md-4
+							ul.nav.nav-pills.nav-justified
+								li.text-left.dropdown
+									a.dropdown-toggle(data-toggle="dropdown" href="#")
+										| Categories
+										span.caret(role="menu")
+									ul.dropdown-menu(role="menu")
+										li(style = "margin-left:1em")
+											| All categories
+										li(style = "margin-left:1em")
+											| Most viewd
+										li(style = "margin-left:1em")
+											| This weeks winners
+										li(style = "margin-left:1em")
+											| For you
+					.row
+						for article in articles
+							.col-md-4
+								.panel.panel-success
+									.panel-body
+										img.img-responsive.img-rounded(src = "http://www.orderofinterbeing.org/wp-content/uploads/2014/04/light-forest.jpg")
+									.panel-footer
+										h3
+											| #{article.title}
+					.row
+						for article in articles
+							.col-md-4
+								.panel.panel-success
+									.panel-body
+										img.img-responsive.img-rounded(src = "http://www.orderofinterbeing.org/wp-content/uploads/2014/04/light-forest.jpg")
+									.panel-footer
+										h3
+											| #{article.title}
+	else
+		.row
+			.col-md-12.text-center
+				.clearfix
+					h1(style ='font-size:500%')
+						| Dont't miss out!
+					h4
+						| Have your say on todays nominations
+						br
+					button#start_btn.btn.btn-success.btn-lg(style="width:250px; margin-top:1em")
+						| Nominate awesomenes
+					h2
+						| or
+					button.btn.btn-info.btn-lg(style= "width:250px; margin-top:1em")
+						| Just vote	
+					hr
+		.row
+			.col-md-2
+
+			.col-md-8.text-center
+				p
+					| To be able to select the most awesome news online every day we need awesome nominations. For every new submission and every single vote, our democratic power becomes more just.
+
+
+
+
+
+
+
+
+
+
 
 - endblock
