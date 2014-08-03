@@ -6,8 +6,8 @@ viewpatterns = patterns('justawesome.app.news.views',
 	url(r'^vote/$', 'vote_view', name='vote'),
 	url(r'^home/$', 'home_view', name='home'),
 	url(r'article/$', 'article_view', name='article'),
+	url(r'about/$', 'about_view', name = 'about'), 
 )
-
 
 ajaxpatterns = patterns('justawesome.app.news.ajax',
 	url(r'^nominate/nominate_ajax/$', 'nominate_ajax', name='nominate_ajax'),
